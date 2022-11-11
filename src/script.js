@@ -14,11 +14,18 @@ const scene = new THREE.Scene();
 // Object
 // const geometry = new THREE.BoxGeometry(1, 1, 1, 2, 2, 2);
 
-const positionsArray = new Float32Array([0, 0, 0, 0, 1, 0, 1, 0, 0]);
+const geometry = new THREE.BufferGeometry();
+
+const count = 50;
+// 3 because you need three vertices every time
+const positionsArray = new Float32Array(count * 3 * 3);
+
+// Filling up the array
+for (let index = 0; index < positionsArray.length; index++) {
+  positionsArray[index] = Math.random() - 0.5;
+}
 
 const positionsAttribute = new THREE.BufferAttribute(positionsArray, 3);
-
-const geometry = new THREE.BufferGeometry();
 geometry.setAttribute('position', positionsAttribute);
 
 const material = new THREE.MeshBasicMaterial({
